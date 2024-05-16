@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Interface</title>
+</head>
+<body>
+<h1>Chat with RAG Chatbot</h1>
+<div>
+    <textarea id="queryInput" rows="4" cols="50" placeholder="Type your query here..."></textarea>
+</div>
+<button type="button" onclick="sendQuery()">Send</button>
+<div>
+    <h2>Response</h2>
+    <p id="responseOutput"></p>
+</div>
+
+<script>
+        function sendQuery() {
+            const query = document.getElementById('queryInput').value;
+            const payload = { query: query };
+
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.text())
+            .then(data => document.getElementById('responseOutput').innerText = data)
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
