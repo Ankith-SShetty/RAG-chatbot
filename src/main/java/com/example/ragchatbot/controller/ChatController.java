@@ -10,8 +10,6 @@ public class ChatController {
     public String handleChat(@RequestBody ChatRequest chatRequest) {
         String userQuery = chatRequest.getQuery();
 
-        // TODO: Implement chat logic (retrieval, prompt engineering, and response generation)
-
         return "Response to: " + userQuery;
     }
 }
